@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Geometric Algorithms (INFOGA)</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/default.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrapify.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+              <a class="navbar-brand logo" href="#">final_exam_2018_solutions</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="../index.html#latest-news">News</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#schedule">Schedule</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#course-literature">Course Literature</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#grading">Grading</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../bonus.html">Bonus</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://osiris-student.uu.nl/onderwijscatalogus/extern/cursus?cursuscode=INFOGA&collegejaar=2024">Osiris Page</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+            <h1 id="q1">Q1</h1>
+<h2 id="a-smallest-enclosing-ball-on3-worst-case-on-expected.">a: smallest enclosing ball, <span class="math inline"><em>O</em>(<em>n</em><sup>3</sup>)</span> worst case, <span class="math inline"><em>O</em>(<em>n</em>)</span> expected.</h2>
+<h2 id="b-convex-hull-on-time">b: convex hull, <span class="math inline"><em>O</em>(<em>n</em>)</span> time,</h2>
+<p>since the chain is already sorted on <span class="math inline"><em>x</em></span>-coordinate. (so no need to
+sort again in the graham scan algorithm.)</p>
+<h2 id="c-kd-tree-on23k.">c : kd-tree, <span class="math inline"><em>O</em>(<em>n</em><sup>2/3</sup> + <em>k</em>)</span>.</h2>
+<h2 id="d-emst-onlog-n-via-delaunay-triangulation.">d : EMST, <span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span> via Delaunay Triangulation.</h2>
+<h2 id="e-insert-into-arrangement-on-time">e : Insert into Arrangement, <span class="math inline"><em>O</em>(<em>n</em>)</span> time</h2>
+<p>by the zone Theorem</p>
+<h2 id="f-cutting-tree-on2varepsilon-for-some-arbitrarily-small-varepsilon-0">f: cutting tree <span class="math inline"><em>O</em>(<em>n</em><sup>2 + <em>ε</em></sup>)</span>, for some arbitrarily small <span class="math inline"><em>ε</em> &gt; 0</span></h2>
+<p>(This was not covered this year)</p>
+<p>using a multi level cutting tree.</p>
+<h2 id="g-triangulating-on2-time">g: triangulating, <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> time:</h2>
+<p>there are <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> bounded faces, of total complexity <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span>; every
+such face is convex (and thus <span class="math inline"><em>y</em></span>-monotone). So triangulation it
+takes linear time in the complexity of the face.</p>
+<h1 id="q2">Q2:</h1>
+<h2 id="a">a</h2>
+<p>interval tree: balanced binary tree on the endpoints of the intervals. The
+root u corresponds to the median x-coordinate m and stores all intervals
+containing this midpoint. Intervals left of m are stored in the left
+subtree, and right of m in the right subtree. u stores the intervals twice:
+once sorted on left endpoint and once on right endpoint</p>
+<p>segment tree: balanced BST on endpoints of intervals. leaves correspond to
+atomic intervals defined by consecutive endpoints. Internal nodes
+correspond to the union of the atomic intervals of its leaves. Intervals
+are stored in a node v if the interval covers the inverval of V but not of
+its parent.</p>
+<h2 id="b">b</h2>
+<p>prefer interval tree: <span class="math inline"><em>O</em>(<em>n</em>)</span> space rather than <span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span></p>
+<p>prefer segment tree: query result can be represented as <span class="math inline"><em>O</em>(log <em>n</em>)</span> canonical
+subsets, this is useful for building multilevel structures.</p>
+<h1 id="q3">Q3</h1>
+<p>&lt;&lt;imagine some wonderful figure here that shows the geometries
+described below&gt;&gt;</p>
+<p>Let <span class="math inline">$\overline{pq}^*$</span> be a strip bounded by two parallel lines <span class="math inline"><em>p</em><sup>*</sup></span> and
+<span class="math inline"><em>q</em><sup>*</sup></span> with <span class="math inline"><em>q</em><sup>*</sup></span> above <span class="math inline"><em>p</em><sup>*</sup></span>, and let <span class="math inline"><em>r</em><sup>*</sup></span> be a line steeper than <span class="math inline"><em>q</em><sup>*</sup></span>
+that intersects a line <span class="math inline"><em>s</em><sup>*</sup></span> that is contained in <span class="math inline">$\overline{pq}^*$</span> in a
+point <span class="math inline"><em>ℓ</em><sup>*</sup></span>. (That the ‘b’-coordinate (i.e. the intercept) of <span class="math inline"><em>r</em><sup>*</sup></span> is smaller than that of
+<span class="math inline"><em>p</em><sup>*</sup></span> follows from this as well.)</p>
+<h1 id="q4">Q4</h1>
+<h2 id="a-1">a</h2>
+<p>if p occurs on CH there is a line ℓ through p that bounds an empty
+half-plane. consider the half-line in this half-plane starting in p,
+that is perpendicular to l. Any point on this half-line is strictly
+closer to p than to any other point in p (as any circle with p on its
+boundary centered on the line is empty.)</p>
+<h2 id="b-1">b</h2>
+<p>Every vertex in VD uniquely corresponds to a triangle in the Delaunay
+triangulation. So we have to prove that DT contains <span class="math inline">2<em>n</em> − 2 − <em>k</em></span>
+triangles. This follows from Euler’s formula, which states that (for a
+connected graph, like DT):</p>
+<p><span class="math inline"><em>V</em> − <em>E</em> + <em>F</em> = 2</span></p>
+<p>We have n points/vertices, so V = n</p>
+<p>There is one outer face, and T triangles, hence F = T + 1.</p>
+<p>Every edge appears in two faces. every triangle has 3 edges, the outer
+face has k edges. So</p>
+<p><span class="math inline">2<em>E</em> = 3<em>T</em> + <em>k</em></span>.</p>
+<p>Combining this gives us</p>
+<p><span class="math inline">2<em>n</em> − 2<em>E</em> + 2(<em>T</em> + 1) = 4</span></p>
+<p><span class="math inline"> ≡ 2<em>n</em> − 3<em>T</em> − <em>k</em> + 2<em>T</em> + 2 = 4</span></p>
+<p><span class="math inline"> ≡ 2<em>n</em> − <em>T</em> − <em>k</em> − 2 = 0</span></p>
+<p><span class="math inline"> ≡ 2<em>n</em> − <em>k</em> − 2 = <em>T</em></span></p>
+<p>as claimed.</p>
+<h1 id="q5">Q5</h1>
+<h2 id="a-2">a</h2>
+<p>a trapezoidal decomposition (together with the search dag that is
+built on the trapezoidal decomposition using a RIC algorithm).</p>
+<h2 id="b-2">b</h2>
+<p>&lt;&lt;see notes on the website for something more detailed&gt;&gt;</p>
+<p>fix a query point q, which fixes a path in the query DS. Now analyze
+how many nodes on this path are added because of segment <span class="math inline"><em>s</em><sub><em>i</em></sub></span>. There
+are at most three anyway since we only add nodes at the bottom of the
+structure, and only if P actually ends in a trapezoid created in step</p>
+<ol type="a">
+<li>The probability that our particular trapezoid containing q was</li>
+</ol>
+<p>created in step is is 4/i. So we get something like <span class="math inline"><em>s</em><em>u</em><em>m</em><sub><em>i</em> = 1</sub><sup><em>n</em></sup>12/<em>i</em> = 12 * <em>H</em><sub><em>n</em></sub> = <em>O</em>(log <em>n</em>)</span></p>
+<h2 id="c">c</h2>
+<p><span class="math inline"><em>O</em>(<em>n</em>log <em>n</em> + <em>m</em>log <em>n</em>)</span> time (building the data structure, and then querying it.)</p>
+<h2 id="d">d</h2>
+<p>The idea was to use a sweep line that sweeps a horizontal line from
+top to bottom. The status structure is simply the list of edges of S
+intersected by the sweep line from left to right. We store them in a
+BST. The events are when we sweep over a vertex of S or a query
+point. Handling an event requires <span class="math inline"><em>O</em>(<em>k</em>log <em>n</em>)</span> time where k is the
+degree of a vertex (essentially k=0 for query points) since they
+involve <span class="math inline"><em>O</em>(<em>k</em> + 1)</span> queryies/updates to the status structure.</p>
+<p>( Admittedly, this this approach actually gives you a running time of
+<span class="math inline"><em>O</em>((<em>n</em> + <em>m</em>)log (<em>n</em> + <em>m</em>))</span>, which may be slightly slower than the <span class="math inline"><em>O</em>(<em>n</em>log <em>n</em> + <em>m</em>log <em>n</em>)</span> bound. if m is huge compared to n.
+)</p>
+<p>Build a segment tree with fractional cascading on the line segments,
+then query it.</p>
+<h2 id="e">e</h2>
+<p>(not covered this year)</p>
+<p>degenerate inputs (i.e. multiple points with same coordinates etc) -&gt;
+symbolic pertubation</p>
+<p>floating point issues -&gt; use exact real arithmetic</p>
+        </main>
+    </body>
+</html>

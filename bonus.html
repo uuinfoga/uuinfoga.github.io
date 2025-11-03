@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Geometric Algorithms (INFOGA)</title>
+        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <link rel="stylesheet" href="./css/default.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="./js/bootstrap.min.js"></script>
+        <script src="./js/bootstrapify.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+              <a class="navbar-brand logo" href="#">bonus</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="./index.html#latest-news">News</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html#schedule">Schedule</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html#course-literature">Course Literature</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./index.html#grading">Grading</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./bonus.html">Bonus</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://osiris-student.uu.nl/onderwijscatalogus/extern/cursus?cursuscode=INFOGA&collegejaar=2024">Osiris Page</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+            <h1 id="bonus-assignment-implementing-convex-hull-algorithms">Bonus Assignment: Implementing Convex Hull Algorithms</h1>
+<p>The main goal of the bonus project is to learn about the peculiarities
+of implementing geometric algorithms. Furthermore, you may see that
+there may be differences between theory and practice in terms of
+performance of the algorithms.</p>
+<h2 id="the-assignment">The assignment</h2>
+<p>In groups of two or three you will implement two or three algorithms
+to compute the convex hull of a set of <span class="math inline"><em>n</em></span> points in <span class="math inline">ℝ<sup>2</sup></span>,
+and experimentally evaluate them. In case your group consists of three
+people, implement (at least) three algorithms. For all algorithms, try
+to find a “type” of data sets where this algorithm performs better
+than the other algorithm(s). Finally, write a short, at most two
+pages, paper/report about your findings.</p>
+<h2 id="the-algorithms">The algorithms</h2>
+<p>The algorithms you can choose from are</p>
+<ul>
+<li>Graham Scan (the algorithm that we covered in detail in lecture
+one),</li>
+<li><a href="https://en.wikipedia.org/wiki/Gift_wrapping_algorithm">Jarvis March</a>,</li>
+<li><a href="http://www.cs.jhu.edu/~misha/Spring16/Preparata77.pdf">Divide and Conquer</a></li>
+</ul>
+<p>or, if you like some additional challenge,</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Chan's_algorithm">Chan’s Algorithm</a>
+(see also <a href="https://link.springer.com/article/10.1007/BF02712873">the original paper</a>)</li>
+</ul>
+<h2 id="the-implementation">The implementation</h2>
+<p>The most important aspect of your implementation is
+<strong>correctness</strong>. That is, make sure that your algorithms <strong>always</strong>
+produces the correct convex hull, even if the input is degenerate. For
+example, if there may be three points on a line. Report only the
+strictly convex vertices (i.e. at which the interior angle is strictly
+less than <span class="math inline"><em>π</em></span>), and in clockwise order.</p>
+<p>You will likely run in to an additional issue that, in the theory part
+of the course, we mostly ignore. See for example what happens when all
+input points are <strong>almost</strong> on a line. Think about a way to avoid this
+issue, and state in your paper what you did to tackle it.</p>
+<h2 id="the-experimental-setup">The Experimental Setup</h2>
+<p>Briefly describe how you obtain/create the data sets you can evaluate
+your algorithms on. Consider at least two different “types” ways of
+creating data sets. In particular, for each algorithm <span class="math inline"><em>A</em></span>, try to find
+a “type” of data set for which it computes the convex hull faster than
+the other algorithm(s). If for cannot find such a set for an algorithm
+<span class="math inline"><em>A</em></span>, explain what you tried, and why you think the other algorithm
+performs better than <span class="math inline"><em>A</em></span> on all your data sets.</p>
+<p>Make sure to vary the number of points <span class="math inline"><em>n</em></span> in the input datasets, and
+report the running time of the algorithms.</p>
+<h2 id="the-paperreport">The paper/report</h2>
+<p>You will write a short, maximum two page, paper that states</p>
+<ol type="1">
+<li>which algorithms you implemented,</li>
+<li>a very short description of the context (i.e. language and
+environment) in which you implemented your algorithms and your
+experimental setup,</li>
+<li>how you made sure that your algorithms are guaranteed to be
+correct,</li>
+<li>your experimental results (in some easy to read way), and</li>
+<li>a very short, one at most paragraph, conclusion with a
+recommendation on which algorithm to use when.</li>
+</ol>
+<p>Make sure it is well written, and has clear exposition of the data
+sets and the results. Use figures, graphs, plots, etc. when
+appropriate.</p>
+<h2 id="the-assessment">The Assessment</h2>
+<p>The assessment will be based on your paper/report only (but you may
+have to provide your code on request). In particular, on</p>
+<ul>
+<li>how you made sure that your algorithms are correct,</li>
+<li>how you evaluated your algorithms (i.e. which data sets did you
+use/generate), and</li>
+<li>the presentation of your experimental results.</li>
+</ul>
+<h2 id="howwhen-to-hand-in-your-report">How/When to hand in your report</h2>
+<p>Hand in your report on Brightspace by Fri 23 Jan 2025 23:59 (CET). You
+may have to join a Group on Brightspace before you can see where to
+hand it in.</p>
+        </main>
+    </body>
+</html>

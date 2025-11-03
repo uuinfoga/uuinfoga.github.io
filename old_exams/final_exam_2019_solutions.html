@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Geometric Algorithms (INFOGA)</title>
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/default.css">
+
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="../js/bootstrap.min.js"></script>
+        <script src="../js/bootstrapify.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+              <a class="navbar-brand logo" href="#">final_exam_2019_solutions</a>
+
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="../index.html#latest-news">News</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#schedule">Schedule</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#course-literature">Course Literature</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../index.html#grading">Grading</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="../bonus.html">Bonus</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://osiris-student.uu.nl/onderwijscatalogus/extern/cursus?cursuscode=INFOGA&collegejaar=2024">Osiris Page</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+        </header>
+
+        <main role="main" class="container">
+            <h1 id="q1">Q1</h1>
+<dl>
+<dt>a</dt>
+<dd>
+<span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span> time.
+</dd>
+<dt>b</dt>
+<dd>
+<span class="math inline"><em>O</em>(log<sup>2</sup><em>n</em> + <em>k</em>)</span> time.
+</dd>
+<dt>c</dt>
+<dd>
+<span class="math inline"><em>O</em>(<em>n</em>)</span> time.
+</dd>
+<dt>d</dt>
+<dd>
+<span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span> time.
+</dd>
+<dt>e</dt>
+<dd>
+<span class="math inline"><em>O</em>(<em>n</em>)</span> time.
+</dd>
+</dl>
+<h1 id="q2">Q2</h1>
+<h2 id="a">a</h2>
+<p><span class="math inline"><em>O</em>(<em>n</em>)</span>: consider some sufficiently large bounding box that contains
+all vertices of <span class="math inline">𝒜</span>. It follows that any unbounded cell
+intersects the boundary of the bounding box. Hence, every unbounded
+cell is intersected by one of the four supporting lines of the edges
+of this box. The result now follows by applying the zone theorem 4
+times.</p>
+<h2 id="b">b</h2>
+<p>Pick <span class="math inline"><em>n</em> − 1</span> (almost) parallel lines <span class="math inline"><em>ℓ</em><sub>1</sub>, .., <em>ℓ</em><sub><em>n</em> − 1</sub></span> that all
+intersect a single line <span class="math inline"><em>ℓ</em><sub><em>n</em></sub></span>. Each of the first <span class="math inline"><em>n</em> − 1</span> lines
+creates one vertex on an unbounded face. Therefore the above bound is
+tight.</p>
+<p>(There are many other ways of getting such a bound.)</p>
+<h1 id="q3">Q3</h1>
+<p>&lt;&lt;imagine some wonderful figure here that shows the geometries
+described below&gt;&gt;</p>
+<p><span class="math inline">$\overline{qr}^*$</span> is a double wedge, whose intersection point is
+<span class="math inline"><em>ℓ</em><sup>*</sup></span>. Line <span class="math inline"><em>r</em><sup>*</sup></span> is the steepest of the two bounding lines
+(which is thus at the bottom left of <span class="math inline"><em>ℓ</em><sup>*</sup></span>).
+<span class="math inline"><em>S</em><sup>*</sup></span> is a vertical linesegment at <span class="math inline"><em>a</em> = 0</span> that lies below
+<span class="math inline"><em>r</em><sup>*</sup></span> and <span class="math inline"><em>q</em><sup>*</sup></span>. line <span class="math inline"><em>p</em><sup>*</sup></span> lies below this line segment
+<span class="math inline"><em>S</em><sup>*</sup></span>, and has a slope in between that of <span class="math inline"><em>q</em><sup>*</sup></span> and <span class="math inline"><em>r</em><sup>*</sup></span>.</p>
+<h1 id="q4">Q4</h1>
+<p>DT is a connected planar graph, so we use Eulers formula:
+<span class="math inline"><em>V</em> − <em>E</em> + <em>F</em> = 2</span></p>
+<p>We have <span class="math inline"><em>V</em> = <em>n</em></span></p>
+<p>Let <span class="math inline"><em>T</em></span> be the number of triangles, then we have <span class="math inline"><em>F</em> = <em>T</em> + 1</span>.
+Moreover, we have <span class="math inline">2<em>E</em> = 3<em>T</em> + <em>k</em></span> since every triangle consists of
+three edges, the outer face consists of <span class="math inline"><em>k</em></span> edges, and every edge
+appears in two faces.</p>
+<p>We thus get:
+<span class="math inline"><em>n</em> − <em>E</em> + <em>T</em> + 1 = 2</span>
+<span class="math inline"> ≡ 2<em>n</em> − 2<em>E</em> + 2<em>T</em> + 2 = 4</span>
+<span class="math inline"> ≡ 2<em>n</em> − (3<em>T</em> + <em>k</em>) + 2<em>T</em> + 2 = 4</span>
+<span class="math inline"> ≡ −<em>T</em> = 2 − 2<em>n</em> + <em>k</em></span>
+<span class="math inline"> ≡ <em>T</em> = 2<em>n</em> − <em>k</em> − 2</span></p>
+<h1 id="q5">Q5</h1>
+<h2 id="a-1">a</h2>
+<p>Shuffle the halfplanes; we add them one by one, while maintaining the
+lowest point that appears in all halfplanes. if the current optimal
+solution is contained in the new halfplane, continue. If it lies
+outside the current halfplane, the new lowest point must lie <strong>on</strong> the
+boundary l of this halfplane. To find this point, we use 1D linear
+programming; i.e. we iterate over all halfplanes that we already
+encountered (every halfplane defines a feasilble half-line; testing if
+there is a feasilble point/finding the lowest such point) cana be done
+in <span class="math inline"><em>O</em>(<em>n</em>)</span> time.</p>
+<h2 id="b-1">b</h2>
+<p>Method (ii) is (in expectation) faster than method (i). (<span class="math inline"><em>O</em>(<em>n</em>)</span>
+expected time vs <span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span> (worst-case) time).</p>
+<h2 id="c">c</h2>
+<p>Method (ii) gives you only one possible removal direction. Whereas method (i)
+gives all possible directions. That may be desirable when there are
+other (say non geometric) constraints on how to remove the shape.</p>
+<h1 id="q6">Q6</h1>
+<p>Use a sweepline algorithm sweeping a vertical line <span class="math inline"><em>ℓ</em></span> from left to
+right. We maintain the edges currently intersected by <span class="math inline"><em>ℓ</em></span> in a
+BST. The events are vertices (since those are the only places these
+edges change). The eventqueue is just a sorted list</p>
+<p>At every event <span class="math inline"><em>v</em></span> at <span class="math inline"><em>x</em><sub><em>i</em></sub></span>, we update the status structure by inserting
+edges for which <span class="math inline"><em>v</em></span> is the left endpoint and delete those for
+which <span class="math inline"><em>v</em></span> is the right endpoint. We then create a fresh copy of
+the status structure and save it in <span class="math inline"><em>D</em>[<em>i</em>]</span>.</p>
+<p>We sort the events <span class="math inline"><em>O</em>(<em>n</em>)</span> events. The BST actions at each event <span class="math inline"><em>O</em>(<em>k</em> * <em>l</em><em>o</em><em>g</em><em>n</em>)</span> time, where <span class="math inline"><em>k</em></span> is the degree. The total degree over all
+vertices is <span class="math inline"><em>O</em>(<em>n</em>)</span>, so overall <span class="math inline"><em>O</em>(<em>n</em>log <em>n</em>)</span> time. Copying the BST is
+<span class="math inline"><em>O</em>(<em>n</em>)</span> time. So in total we spend <span class="math inline"><em>O</em>(<em>n</em><sup>2</sup>)</span> time.</p>
+<h1 id="q7">Q7</h1>
+<h2 id="a-2">a</h2>
+<p>We can retrieve all segments that have an endpoint in <span class="math inline"><em>R</em></span> by
+using a 2d range-tree, this reports all endpoints in <span class="math inline"><em>O</em>(log<sup>2</sup><em>n</em> + <em>k</em><sup>′</sup>)</span> time, where <span class="math inline"><em>k</em><sup>′</sup></span> is the number of reported endpoints.
+for every reported endpoint, we can access the segment it is
+an endpoint of in constant time, and check: (i) if this is the
+only endpoint in <span class="math inline"><em>R</em></span>, and just report it, or (ii) if the other
+endpoint is also in <span class="math inline"><em>R</em></span>. In case of (ii), we can, say report the
+segment only when the current point is the left endpoint.</p>
+<p>During this reporting, every valid segment is encountered at
+most twice (by both its endpoints). Hence <span class="math inline"><em>k</em><sup>′</sup> = <em>O</em>(<em>k</em>)</span>.</p>
+<h2 id="b-2">b</h2>
+<p>When a segment has both endpoints inside the query range <span class="math inline"><em>R</em></span>, it is
+counted twice. Not all segments are counted twice.</p>
+<h2 id="c-1">c</h2>
+<p>We build two separate range trees, one storing only the left
+endpoints, one storing only the right endpoints. The one for
+the right endpoints is just a normal range counting DS. For
+the tree with left endpoints we do the following.</p>
+<p>For each secondary node <span class="math inline"><em>v</em></span>, for each left endpoint in <span class="math inline"><em>P</em><sub><em>v</em></sub></span>, let
+<span class="math inline"><em>R</em><sub><em>v</em></sub></span> be the set of corresponding right endpoints. We build a
+range tree (for counting queries) on those points.</p>
+<p>We now query the tree on right endpoints to find all segments whose
+right endpoint lies in the query range (this includes the ones that
+also have their left endpoint in the query range).</p>
+<p>We then query the left-endpoint tree to find only the left endpoints
+whose right endpoint is outside the query range. These points are
+represented by <span class="math inline"><em>O</em>(log<sup>2</sup><em>n</em>)</span> canonical sets. For each such canonical
+subset we can now count the number of segment whose right endpoint is
+outside the query range. (This requires actually four queries in each
+such tree; each taking up to <span class="math inline"><em>O</em>(log<sup>2</sup><em>n</em>)</span> time)</p>
+<p>This results in <span class="math inline"><em>O</em>(log<sup>4</sup><em>n</em>)</span> query time.</p>
+<p>(Alternatively: we can build a 4-level range tree to count exactly how
+many segments we “double count”, and subtract that from the total
+number of points in <span class="math inline"><em>R</em></span>)</p>
+        </main>
+    </body>
+</html>
