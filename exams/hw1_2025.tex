@@ -1,0 +1,149 @@
+\documentclass{article}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{totcount}
+\usepackage{algpseudocode}
+\usepackage[usenames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\graphicspath{ {./figures/} }
+
+%--------------------------------------------------------------------------------
+
+\newcommand{\edition}{2025-2026}
+\newcommand{\deadline}{21 November 2025, 15:15}
+\newcommand{\hwNum}{1}
+
+%--------------------------------------------------------------------------------
+% Style stuff
+\pagestyle{fancy}
+\lhead{Geometric Algorithms (INFOGA \edition)}
+\chead{}
+\rhead{\mytitle}
+\lfoot{INFOGA \edition}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+%--------------------------------------------------------------------------------
+% Question macro's
+
+\newcommand{\withpoints}[1]{%
+  \addtocounter{pointscounter}{#1} \printpoints{#1}
+}
+\newcommand{\printpoints}[1]{%
+   \ifthenelse{#1 = 0}
+              {}
+              {\textit{(#1 points)}}\mbox{}
+}
+
+
+
+\newenvironment{question}[1][0]{\begin{tcolorbox}[parbox=false
+                                      ,breakable=true
+                                      ,enhanced jigsaw
+                                      ,title=\bfseries Question
+                                      \stepcounter{questionscounter}\arabic{questionscounter}
+                                      \withpoints{#1}]
+                         }
+                         {\end{tcolorbox}}
+\newenvironment{subquestions}{\begin{enumerate}[leftmargin=*
+                                        ]}
+                             {\end{enumerate}}
+\newcommand{\subquestion}[1][0]{\item \withpoints{#1}}
+
+\newtotcounter{questionscounter}
+\newtotcounter{pointscounter}
+
+\newcommand{\numquestions}{\total{questionscounter}}
+\newcommand{\numpoints}{\total{pointscounter}}
+
+%--------------------------------------------------------------------------------
+\newcommand{\myremark}[3]{\textcolor{blue}{\textsc{#1 #2:}} \textcolor{red}{\textsf{#3}}}
+% \renewcommand{\myremark}[3]{}
+\newcommand{\frank}[2][says]{\myremark{Frank}{#1}{#2}}
+
+%--------------------------------------------------------------------------------
+% Theorem Environments
+\newtheorem{theorem} {Theorem}
+\newtheorem{lemma}[theorem] {Lemma}
+\newtheorem{corollary}[theorem] {Corollary}
+\newtheorem{problem}[theorem] {Problem}
+\newtheorem{observation}[theorem] {Observation}
+\newtheorem{claim}[theorem] {Claim}
+\newtheorem{invariant}[theorem] {Invariant}
+
+%--------------------------------------------------------------------------------
+% Otherwise useful Macro's
+\newcommand{\eps}{\ensuremath{\varepsilon}\xspace}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax}
+
+\newcommand{\mkmbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\R}{\mkmbb{R}}
+
+\newcommand{\mathfunc}[1]{\ensuremath{\mathit{#1}}\xspace}
+
+%--------------------------------------------------------------------------------
+% The Actual document
+
+\newcommand{\mytitle}{Homework Exam \hwNum\xspace\edition}
+\title{\mytitle}
+\date{\textbf{Deadline: } \deadline}
+\author{{\color{red} My name and StudentID go here!}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+  \noindent
+  This homework exam has \numquestions\xspace question for a total of
+  \numpoints\xspace points. You can earn an additional point by a careful
+  preparation of your hand-in: using a good layout, good spelling, good
+  figures, no sloppy notation, no statements like ``The algorithm runs in
+  $n\log n$.''  (forgetting the $O(..)$ and forgetting to say that it concerns
+  time), etc. Use lemmas, theorems, and figures where appropriate.
+
+  \begin{question}[9]
+    Let $r \in \R^2$ be a ``red'' point, and let $B$ be a set of $n$
+    ``blue'' points in $\R^2$. You can assume that the points are in
+    general position; meaning that no two points have the same
+    $x$-coordinate or the same $y$-coordinate, and that no three
+    points lie on a line. A triangle is ``bichromatic'' when its
+    vertices are either red or blue, and it has at least one vertex of
+    either color. Develop an $O(n\log n)$ time algorithm to find a
+    maximum area ``bichromatic'' triangle $\Delta^*$ on $\{r\},B$.
+
+    \textbf{Hint: } You can use the following fact. A function
+    $f [1..n] \to \R$ is \emph{unimodal} if (and only if) it has a
+    single (local) maximum. A maximum of $f$ can be computed in
+    $O(T\log n)$ time, where $T$ is the time it takes to evaluate a
+    single value $f(i)$ with $i \in [1..n]$. In particular, using the
+    following function \Call{TernarySearch}{$[1,n], f$}:
+
+    \begin{algorithmic}
+    \Function{TernarySearch}{$[a..b], f$}
+      \State $n \gets b - a$
+      \If{ $n < 3$ }
+        evaluate $f(i)$ for each $i \in [a..b]$ and return $\max_i f(i)$
+      \Else
+        \State $m_1 \gets a + \lfloor n/3  \rfloor$ ; $m_2 \gets a + \lfloor 2n/3 \rfloor$
+        \If{ $f(m_1) < f(m_2)$ }
+          \Call{TernarySearch}{$[m_1..,b], f$}
+        \Else
+          \Call{TernarySearch}{$[a..m_2], f$}
+        \EndIf
+      \EndIf
+    \EndFunction
+    \end{algorithmic}
+  \end{question}
+
+\end{document}
