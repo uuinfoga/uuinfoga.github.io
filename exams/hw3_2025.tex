@@ -1,0 +1,221 @@
+\documentclass{article}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{totcount}
+\usepackage{algpseudocode}
+\usepackage[usenames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\graphicspath{ {./figures/} }
+
+%--------------------------------------------------------------------------------
+
+\newcommand{\edition}{2025-2026}
+\newcommand{\deadline}{14 January 2026}
+\newcommand{\hwNum}{3}
+
+\newcommand{\student}{\color{red} My name and StudentID go here!}
+
+%--------------------------------------------------------------------------------
+% Style stuff
+\pagestyle{fancy}
+\lhead{Geometric Algorithms (INFOGA \edition)}
+\chead{}
+\rhead{\mytitle}
+\lfoot{INFOGA \edition}
+\cfoot{\student}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+%--------------------------------------------------------------------------------
+% Question macro's
+
+\newcommand{\withpoints}[1]{%
+  \addtocounter{pointscounter}{#1} \printpoints{#1}
+}
+\newcommand{\printpoints}[1]{%
+   \ifthenelse{#1 = 0}
+              {}
+              {\textit{(#1 points)}}\mbox{}
+}
+
+
+
+\newenvironment{question}[1][0]{\begin{tcolorbox}[parbox=false
+                                      ,breakable=true
+                                      ,enhanced jigsaw
+                                      ,title=\bfseries Question
+                                      \stepcounter{questionscounter}\arabic{questionscounter}
+                                      \withpoints{#1}]
+                         }
+                         {\end{tcolorbox}}
+\newenvironment{subquestions}{\begin{enumerate}[leftmargin=*,label=\alph*.
+                                        ]}
+                             {\end{enumerate}}
+\newcommand{\subquestion}[1][0]{\item \withpoints{#1}}
+
+\newtotcounter{questionscounter}
+\newtotcounter{pointscounter}
+
+\newcommand{\numquestions}{\total{questionscounter}}
+\newcommand{\numpoints}{\total{pointscounter}}
+
+%--------------------------------------------------------------------------------
+\newcommand{\myremark}[3]{\textcolor{blue}{\textsc{#1 #2:}} \textcolor{red}{\textsf{#3}}}
+% \renewcommand{\myremark}[3]{}
+\newcommand{\frank}[2][says]{\myremark{Frank}{#1}{#2}}
+
+%--------------------------------------------------------------------------------
+% Theorem Environments
+\newtheorem{theorem} {Theorem}
+\newtheorem{lemma}[theorem] {Lemma}
+\newtheorem{corollary}[theorem] {Corollary}
+\newtheorem{problem}[theorem] {Problem}
+\newtheorem{observation}[theorem] {Observation}
+\newtheorem{claim}[theorem] {Claim}
+\newtheorem{invariant}[theorem] {Invariant}
+
+%--------------------------------------------------------------------------------
+% Otherwise useful Macro's
+\newcommand{\eps}{\ensuremath{\varepsilon}\xspace}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax}
+
+\newcommand{\mkmbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\R}{\mkmbb{R}}
+\DeclareMathOperator{\Vor}{Vor}
+
+\newcommand{\mathfunc}[1]{\ensuremath{\mathit{#1}}\xspace}
+
+%--------------------------------------------------------------------------------
+% The Actual document
+
+\newcommand{\mytitle}{Homework Exam \hwNum\xspace\edition}
+\title{\mytitle}
+\date{\textbf{Deadline: } \deadline}
+\author{\student}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+  \noindent
+  This homework exam has \numquestions\xspace questions for a total of
+  \numpoints\xspace points. You can earn 10 additional points by a
+  careful preparation of your hand-in: using a good layout, good
+  spelling, good figures, no sloppy notation, no statements like ``The
+  algorithm runs in $n\log n$.''  (forgetting the $O(..)$ and
+  forgetting to say that it concerns time), etc. Use lemmas, theorems,
+  and figures where appropriate. Your final grade will be the number
+  of points divided by 10. Unless stated otherwise, both randomized
+  and deterministic solutions are allowed. In case you are asked to
+  analyze the running time and your algorithm is randomized, analyze
+  its expected running time.
+
+  \begin{question}[13]
+    Let $H$ be a set of $n \geq 3$ halfplanes in $\R^2$ that have a
+    non-empty common intersection $I= \bigcap_{h \in H} h$. Moreover,
+    you can assume that the bounding lines of the halfplanes in $H$
+    are not all parallel. A halfplane $h \in H$ is \emph{redundant} if
+    it does not contribute an edge to $I$. Prove that for any redudant
+    halfplane $h$ there are two halfplanes $h_1,h_2 \in H$ for which
+    $h_1 \cap h_2 \subset h$.
+  \end{question}
+
+  \begin{question}[15]
+    Suppose that you are a shop owner. Let $P$ be the set of $n$
+    people that has entered your shop at some given day. In
+    particular, for every person $p \in P$ you know the time $a_p$
+    which he or she arrived at your shop, and the time $d_p$ at which
+    he or she departed. You can assume that no two people arrive or
+    leave at the same time. You would like to store $P$ so that given
+    a time $t$ and a duration $\ell$, you can quickly (i.e. as fast as
+    possible) find the number of people that were in your shop at time
+    $t$ and stayed for at least $\ell$ time units during that visit.
+
+    Develop a linear space data structure for the above problem. That
+    is, describe your data structure, how to build and query it, and
+    analyze the preprocessing and query time. Clearly, your data
+    structure should have a sublinear query time (but anything
+    strictly faster than linear time is good enough for the full points).
+  \end{question}
+
+  \begin{question}
+    Let $P$ be a set of points in $\R^2$. You can assume
+    that no three points are colinear, no two points have the same
+    $x$-coordinate, and no two points have the same $y$-coordinate.
+
+    \begin{subquestions}
+      \subquestion[10] Describe a data structure that given a query
+      halfplane $h$ can test in $O(\log n)$ time if $h$ contains a
+      point of $P$. Analyze the space usage and the preprocessing time
+      of your data structure.
+
+      \subquestion[15] Describe a data structure that, given an
+      arbitrary query line segment $q=\overline{\ell{}r}$, with
+      endpoint $\ell$ left of endpoint $r$, can test if there are any
+      points in $P$ that lie vertically below $q$. If, for some point
+      $p$ we have that $p_x \not\in [\ell_x,r_x]$ it is incomparable
+      with $q$ (and hence it does not lie vertically below
+      $q$). Analyze the space usage, the preprocessing time, and the
+      query time of your data structure.
+
+      Note: The number of points for this question will depend on the
+      space usage, preprocessing time, and the query time of your data
+      structure.
+    \end{subquestions}
+  \end{question}
+
+  \begin{question}[10]
+    Prove that incrementally constructing a Voronoi diagram on $n$
+    points in $\R^2$ may take $\Omega(n^2)$ time. That is, give a
+    sequence of $n$ points $p_1,..,p_n$, such that every point
+    $p_{i+1}$ causes a linear number of changes (e.g. additions or
+    removals of Voronoi vertices) in the Voronoi diagram
+    $\Vor(\{p_1,..,p_i\})$.
+  \end{question}
+
+  \begin{question}
+    Let $P = L \cup R$ be a set of $n$ points in $\R^2$, where all
+    points in $L$ lie left of some vertical line $\ell$ and all points
+    in $R$ lie right of $\ell$ (we think of the points in $L$ as
+    ``blue'' and the points in $R$ as ``red''). You can assume the
+    point set is in general position; i.e. that there are no three
+    points on a line and that all coordinates are unique. A (point on)
+    an edge $e$ of $\Vor(P)$ is \emph{bichromatic} if and only if
+    exactly one point defining $e$ lies in $L$ (and thus the other
+    point lies in $R$).
+
+    \begin{subquestions}
+      \subquestion[8] Prove that any horizontal line $h$ contains one
+      bichromatic point.
+
+      \subquestion[10] Let $B \subset \R^2$ be the set of bichromatic
+      points. Prove that $B$ forms an unbounded $y$-monotone polygonal
+      chain with $O(n)$ edges.
+
+      \subquestion[9] Describe how to efficiently compute $B$, and
+      how this leads to an $O(n\log n)$ time algorithm to compute the
+      Voronoi diagram $\Vor(P)$.
+
+      Note: Your solution is supposed to be an alternative to the
+      algorithm from Theorem 7.10 in the book. Clearly, you are not
+      allowed to just directly use that result to construct
+      $\Vor(P)$. Instead, your solution should actually use $B$.
+    \end{subquestions}
+  \end{question}
+
+
+
+
+
+
+\end{document}
