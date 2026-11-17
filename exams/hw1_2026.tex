@@ -1,0 +1,142 @@
+\documentclass{article}
+\usepackage{xspace}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{microtype}
+\usepackage{enumitem}
+\usepackage{ifthen}
+\usepackage{totcount}
+\usepackage{algpseudocode}
+\usepackage[usenames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[a4paper, margin=1in]{geometry}
+
+\graphicspath{ {./figures/} }
+
+%--------------------------------------------------------------------------------
+
+\newcommand{\edition}{2026-2027}
+\newcommand{\deadline}{27 November 2026, 17:00}
+\newcommand{\hwNum}{1}
+
+%--------------------------------------------------------------------------------
+% Style stuff
+\pagestyle{fancy}
+\lhead{Geometric Algorithms (INFOGA \edition)}
+\chead{}
+\rhead{\mytitle}
+\lfoot{INFOGA \edition}
+\cfoot{}
+\rfoot{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\familydefault}{\sfdefault}
+
+%--------------------------------------------------------------------------------
+% Question macro's
+
+\newcommand{\withpoints}[1]{%
+  \addtocounter{pointscounter}{#1} \printpoints{#1}
+}
+\newcommand{\printpoints}[1]{%
+   \ifthenelse{#1 = 0}
+              {}
+              {\textit{(#1 points)}}\mbox{}
+}
+
+
+
+\newenvironment{question}[1][0]{\begin{tcolorbox}[parbox=false
+                                      ,breakable=true
+                                      ,enhanced jigsaw
+                                      ,title=\bfseries Question
+                                      \stepcounter{questionscounter}\arabic{questionscounter}
+                                      \withpoints{#1}]
+                         }
+                         {\end{tcolorbox}}
+\newenvironment{subquestions}{\begin{enumerate}[leftmargin=*
+                                        ]}
+                             {\end{enumerate}}
+\newcommand{\subquestion}[1][0]{\item \withpoints{#1}}
+
+\newtotcounter{questionscounter}
+\newtotcounter{pointscounter}
+
+\newcommand{\numquestions}{\total{questionscounter}}
+\newcommand{\numpoints}{\total{pointscounter}}
+
+%--------------------------------------------------------------------------------
+\newcommand{\myremark}[3]{\textcolor{blue}{\textsc{#1 #2:}} \textcolor{red}{\textsf{#3}}}
+% \renewcommand{\myremark}[3]{}
+\newcommand{\frank}[2][says]{\myremark{Frank}{#1}{#2}}
+
+%--------------------------------------------------------------------------------
+% Theorem Environments
+\newtheorem{theorem} {Theorem}
+\newtheorem{lemma}[theorem] {Lemma}
+\newtheorem{corollary}[theorem] {Corollary}
+\newtheorem{problem}[theorem] {Problem}
+\newtheorem{observation}[theorem] {Observation}
+\newtheorem{claim}[theorem] {Claim}
+\newtheorem{invariant}[theorem] {Invariant}
+
+%--------------------------------------------------------------------------------
+% Otherwise useful Macro's
+\newcommand{\eps}{\ensuremath{\varepsilon}\xspace}
+\DeclareMathOperator{\argmin}{argmin}
+\DeclareMathOperator{\argmax}{argmax}
+
+\newcommand{\mkmbb}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\R}{\mkmbb{R}}
+
+\newcommand{\mathfunc}[1]{\ensuremath{\mathit{#1}}\xspace}
+
+%--------------------------------------------------------------------------------
+% The Actual document
+
+\newcommand{\mytitle}{Homework Exam \hwNum\xspace\edition}
+\title{\mytitle}
+\date{\textbf{Deadline: } \deadline}
+\author{{\color{red} My name and StudentID go here!}}
+
+
+\begin{document}
+\maketitle
+\thispagestyle{fancy}
+  \noindent
+  This homework exam has \numquestions\xspace question for a total of
+  \numpoints\xspace points. You can earn an additional point by a careful
+  preparation of your hand-in: using a good layout, good spelling, good
+  figures, no sloppy notation, no statements like ``The algorithm runs in
+  $n\log n$.''  (forgetting the $O(..)$ and forgetting to say that it concerns
+  time), etc. Use lemmas, theorems, and figures where appropriate.
+
+  \begin{question}[9]
+    Let $R$ be a set of $n$ ``red'' points in $\R^2$, and let $B$ be a
+    set of $m$ ``blue'' points in $\R^2$. For any two points
+    $p,q \in \R^2$ we define their $L_\infty$-distance as
+    $d(p,q) = \max\{|p_x-q_x|, |p_y-q_y|\}$.
+
+    \begin{subquestions}
+
+    \item Develop an algorithm that can compute the subset of blue
+      points for which there is a red point within $L_\infty$ distance
+      one. Your algorithm should run in $O((n+m)\log(n+m))$
+      time. Prove that your algorithm is correct and achieves the
+      desired running time.
+
+    \item Let $b \in B$ be a blue point, and let $R_b \subseteq R$
+      denote the subset of red points that lies within
+      $L_\infty$-distance one from $b$. Extend your algorithm above so
+      that we can report all such sets $R_b$ in additional $O(k)$
+      time, where $k$ is the total size of all sets $R_b$. Prove that
+      your algorithm is correct and efficient.
+
+    \item You can actually solve the above problems slightly faster
+      than the bounds given above. Argue how / give the slightly
+      better bound (and argue why your algorithm achieves it).
+    \end{subquestions}
+  \end{question}
+
+\end{document}
